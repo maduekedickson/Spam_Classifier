@@ -20,32 +20,34 @@ def clean_text(text):
     return text
 
 # Streamlit app setup
-# Add an image at the top of the app (replace 'image.jpg' with the path to your image or an image URL)
-st.image('image.jpg', caption='Spam Classifier', use_column_width=True)
+st.image('image.jpeg', caption='Spam Classifier', use_column_width=True)
 
 st.title("SMS Spam Classifier")
 
 # Create a text input box
 user_input = st.text_input("Enter a message to classify:", "")
 
-# If the user provides input
-if user_input:
-    # Preprocess the input text
-    clean_input = clean_text(user_input)
-    
-    # Make a prediction using the model
-    prediction = model.predict([clean_input])[0]
-    
-    # Display the result with custom colors
-    if prediction == "spam":
-        st.markdown(f"""
-            <div style="background-color: red; padding: 10px; border-radius: 5px; color: white; text-align: center;">
-                <h3>This message is classified as SPAM.</h3>
-            </div>
-        """, unsafe_allow_html=True)
+# Create a button to check for spam
+if st.button("Check Spam"):
+    if user_input:
+        # Preprocess the input text
+        clean_input = clean_text(user_input)
+        
+        # Make a prediction using the model
+        prediction = model.predict([clean_input])[0]
+        
+        # Display the result with custom colors
+        if prediction == "spam":
+            st.markdown(f"""
+                <div style="background-color: red; padding: 10px; border-radius: 5px; color: white; text-align: center;">
+                    <h3>This message is classified as SPAM.</h3>
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+                <div style="background-color: green; padding: 10px; border-radius: 5px; color: white; text-align: center;">
+                    <h3>This message is classified as NOT SPAM.</h3>
+                </div>
+            """, unsafe_allow_html=True)
     else:
-        st.markdown(f"""
-            <div style="background-color: green; padding: 10px; border-radius: 5px; color: white; text-align: center;">
-                <h3>This message is classified as NOT SPAM.</h3>
-            </div>
-        """, unsafe_allow_html=True)
+        st.warning("Please enter a message to classify.")
