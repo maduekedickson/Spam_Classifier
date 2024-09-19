@@ -1,7 +1,11 @@
 import streamlit as st
 import pickle
 import re
+import nltk
 from nltk.corpus import stopwords
+
+# Download NLTK stopwords if not already downloaded
+nltk.download('stopwords')
 
 # Load the saved model
 model_filename = 'spam_classifier_model.pkl'
