@@ -1,0 +1,6 @@
+streamlit
+scikit-learn
+pandas
+numpy
+nltk
+#pickle5  # If using pickle5 for backward compatibility
