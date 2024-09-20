@@ -24,7 +24,7 @@ def clean_text(text):
     return text
 
 # Streamlit app setup
-st.image('image.jpeg', caption='Spam Classifier', use_column_width=True)
+st.image('image.jpg', caption='Spam Classifier', use_column_width=True)
 
 st.title("SMS Spam Classifier")
 
